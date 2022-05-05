@@ -1,0 +1,19 @@
+<?php
+
+class config {
+    private static $pdo = NULL;
+
+    public static function getConnexion() {
+		require_once("../Config.php");
+        
+      return  new PD0 (Array (
+    'host' => $host,
+    'username' => $user, 
+    'password' => $password,
+    'db'=> $db,
+    'port' => $port,
+    'prefix' => $prefix,
+    'charset' => 'utf8'));
+    }
+  }
+?>

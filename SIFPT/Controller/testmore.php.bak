@@ -1,0 +1,8 @@
+<?php
+include("OffreC.php");
+include "../Controller/Connection.php";
+include "../Controller/subscribesC.php";
+$session_var->setCIN("123456789");
+$Offre = new Offre($session_var);
+echo $Offre->count_discount($connection);
+?>
