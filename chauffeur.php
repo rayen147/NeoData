@@ -9,6 +9,21 @@ if ($_SESSION["autorisation"] == "admin" || $_SESSION["autorisation"] == "client
 }
 ?>
  
+
+<!DOCTYPE html>
+<html lang="en">
+
+<?php
+  include "../../controller/ChauffeurC.php";
+
+
+  $chauffeur=new ChauffeurC();
+
+$listeChauffeurs=$chauffeur->afficherChauffeur();
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -119,7 +134,7 @@ if ($_SESSION["autorisation"] == "admin" || $_SESSION["autorisation"] == "client
 
 	<section class="textdivider single-post-header">
 		<div class="container">
-			<h1 class="fade-down">Ticket</h1>
+			<h1 class="fade-down">All chauffeurs</h1>
 			<hr class="mb60">
 		</div>
 	</section>
@@ -128,49 +143,107 @@ if ($_SESSION["autorisation"] == "admin" || $_SESSION["autorisation"] == "client
 	<!--  CONTENT WRAPPER -->
 	<div id="content-wrapper">		
 		
-		<section class="container page-section">
-			<div class="row white">
-				<div class="fade-up col-md-offset-2 col-md-8 single-post-content text-center">
-					<p>Get a new ticket</p>
-					<div id="message"></div>
+		<section id="about" class="container page-section">
+        <div class="main-panel">          
+        <div class="content-wrapper">
+            <!-- <form method="GET" action="" class="input-group rounded" style="margin-bottom: 20px"> -->
+                <!-- <input type="search" name="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" /> -->
+                <!-- <button type="submit" class="btn btn-primary"> -->
+                    <!-- </button> -->
+                <!-- </form> -->
+                <!-- <form action="./queries/genpdf.php"> -->
+                <!-- <div class="p-t-20"> -->
+            
+                    <!-- <button class="btn btn--radius btn--green" type="submit">Generer PDF</button> -->
+            
+            
+                <!-- </div> -->
+            <!-- </form> -->
+        <table class="table bg-white">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>nom</th>
+                    <th>prenom</th>
+                    <th>email</th>
+                    <th>num</th>
+                    <th>img</th>
+                    <th>salaire</th>
+                    <th>commentaire</th>
+                    <th>Ajouter commentaire</th>
+                
+                </tr>
+            </thead>
+            <tbody>
 
-					<form method="POST" name="MonForm" action="./queries/addTicket.php"
-                        style="display:flex; flex-direction:column">
-                        <input type="text" name="id_trajet" id="id_trajet" placeholder="Trajet"
-                            style="margin-bottom: 10px" />
-                        <input type="number" name="prix" id="prix" placeholder="Prix" style="margin-bottom: 10px" />
-                        <input type="text" name="classT" id="classT" placeholder="Classe de ticket"
-                            style="margin-bottom: 10px" />
-                        <div style="margin-bottom: 10px">
-                            <input style="width: 100%;" type="date" name="date" />
-                            <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
-                        </div>
+            <?PHP
+            foreach($listeChauffeurs as $row){
+                ?>
+                <tr>
+                    <td><?PHP echo $row['id']; ?></td>
+                    <td><?PHP echo $row['nom']; ?></td>
+                    <td><?PHP echo $row['prenom']; ?></td>
+                    <td><?PHP echo $row['email']; ?></td>
 
-                        <input class="btn btn-success" type="submit" name="submit" value="Add" />
-                    </form>
-				</div>
-			</div><!-- row -->
+                    <td><?PHP echo $row['num']; ?></td>
+                    <td><img src="./images/<?php echo $row['img'] ?>" alt="">
+                    </td>
+                    <td><?PHP echo $row['salaire']; ?></td>
+                    <td>
+                        <?php echo $row['commentaire']; ?>
+                    </td>
+                    <td>
+                        <form method="post" action="./queries/addCommentChauffeur.php?id=<?php echo $row['id'] ?>" style="display: flex">
+                        <textarea name="comment" id="" cols="15" rows="1" type="submit"></textarea>
+                        <button>+</button>
+                        </form>
+                    </td>
+
+
+                </tr>
+
+                <?PHP
+            }
+
+            ?>
+
+
+
+
+            </tbody>
+        </table>
+
+    <!-- main-panel ends -->
+</div>
 		</section>
-				
-		<section class="section-divider textdivider divider6 page-section">
+		
+		<section class="section-divider textdivider divider2">
 			<div class="container">
-				<h1 class="fade-down">CRAFTED IN NEW YORK, USA.</h1>
+				<h1 class="fade-down section-title">HERE IS THE PROOF</h1>
 				<hr>
-				<div class="fade-up">
-					<p>Times Square, New York</p>
-					<p>+47 65584 0546485</p>
+				<div class="col-md-3">
+					<span class="counter">100</span>
+					<span class="counter-desc">Percent Focus</span>
+				</div>
+				<div class="col-md-3">
+					<span class="counter">1000</span>
+					<span class="counter-desc">Minimum Saving</span>
+				</div>
+				<div class="col-md-3">
+					<span class="counter">10000</span>
+					<span class="counter-desc">Ideas</span>
+				</div>
+				<div class="col-md-3">
+					<span class="counter">100000</span>
+					<span class="counter-desc">Profit</span>
 				</div>
 			</div>
 		</section>
-
-		<div id="mapwrapper">
-			<div id="map"></div>
-		</div>
 		
-		<div id="ticket" class="container page-section">
-			<div class="row row white">
+		<section id="contact" class="container-fluid page-section">
+			<div class="white">
 				<div class="col-md-4 fade-up">
-					<h3>Ticket Information</h3>
+					<h3>Contact Information</h3>
 					<p><span class="icon icon-home"></span>Time Square, New York<br/>
 						<span class="icon icon-phone"></span>+36 65984 405<br/>
 						<span class="icon icon-mobile"></span>+36 65984 405<br/>
@@ -178,41 +251,21 @@ if ($_SESSION["autorisation"] == "admin" || $_SESSION["autorisation"] == "client
 						<span class="icon icon-twitter"></span> <a href="#">@infinityteam.com</a> <br/>
 						<span class="icon icon-facebook"></span> <a href="#">Infinity Agency</a> <br/>
 					</p>
-				</div><!-- col -->
-				
-				<div class="col-md-4 fade-up">
-					<h3>Newsletter</h3>
-					<p>Register to our newsletter and be updated with the latests information regarding our services, offers and much more.</p>
-
-						<form class="form-horizontal" role="form">
-						  <div class="form-group">
-						    <label for="inputEmail1" class="col-md-4 control-label"></label>
-						    <div class="col-md-10">
-						      <input type="email" class="form-control" id="inputEmail1" placeholder="Email">
-						    </div>
-						  </div>
-						  <div class="form-group">
-						    <label for="text1" class="col-md-4 control-label"></label>
-						    <div class="col-md-10">
-						      <input type="text" class="form-control" id="text1" placeholder="Your Name">
-						    </div>
-						  </div>
-						  <div class="form-group">
-						    <div class="col-md-10">
-						      <button type="submit" class="btn btn-success">Sign in</button>
-						    </div>
-						  </div>
-					   </form><!-- form -->
-				
-				</div><!-- col -->
-				
-				<div class="col-md-4 fade-up">
-					<h3>Support Us</h3>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-				</div><!-- col -->
-
-			</div><!-- row -->		
-		</div>
+				</div>				
+				<div class="col-md-8 fade-up">
+					<h3>Drop Us A Message</h3>
+					<br>
+					<div id="message"></div>
+					<form method="post" action="sendemail.php" id="contactform">
+						<input type="text" name="name" id="name" placeholder="Name" />
+						<input type="text" name="email" id="email" placeholder="Email" />
+						<input type="text" name="website" id="website" placeholder="Website" />
+						<textarea name="comments" id="comments" placeholder="Comments"></textarea>
+						<input class="btn btn-success" type="submit" name="submit" value="Submit" />
+					</form>
+				</div>
+			</div>		
+		<section >
 
 	</div>
 	<!-- CONTENT WRAPPER -->
@@ -237,5 +290,29 @@ if ($_SESSION["autorisation"] == "admin" || $_SESSION["autorisation"] == "client
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWDPCiH080dNCTYC-uprmLOn2mt2BMSUk&amp;sensor=true"></script>
 	<script type="text/javascript" src="assets/js/init.js"></script>
 
+    <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h4 class="modal-title" id="exampleModalLabel">Add comment</h4>
+			</div>
+			<div class="modal-body">
+				<form class="pt-3" method="post" action="./queries/addCommentChauffeur.php?id=<?php $row['id'] ?>">
+					
+					<div class="form-group">
+                        <textarea name="" id="" cols="30" rows="10" style="width: 100%"></textarea>
+					</div>
+					<div class="mt-3">
+					  <button class="btn btn-block  btn-lg font-weight-medium auth-form-btn" type="submit" style="font-weight: 600;">Add Comment</button>
+					</div>
+					
+					
+					
+				  </form>
+			</div>
+	
+		  </div>
+		</div>
+	  </div>
   </body>
 </html>

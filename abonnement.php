@@ -49,7 +49,7 @@ if ($_SESSION["autorisation"] == "admin" || $_SESSION["autorisation"] == "client
   		<input id="search-box" placeholder="Search" />
   	</div>  
   
-	  <div id="navbar-main">
+  	<div id="navbar-main">
 		<div class="navbar navbar-default navbar-fixed-top">
 			<div class="container">
 				<div class="navbar-header">				
@@ -119,7 +119,7 @@ if ($_SESSION["autorisation"] == "admin" || $_SESSION["autorisation"] == "client
 
 	<section class="textdivider single-post-header">
 		<div class="container">
-			<h1 class="fade-down">Ticket</h1>
+			<h1 class="fade-down">Abonnements</h1>
 			<hr class="mb60">
 		</div>
 	</section>
@@ -134,19 +134,46 @@ if ($_SESSION["autorisation"] == "admin" || $_SESSION["autorisation"] == "client
 					<p>Get a new ticket</p>
 					<div id="message"></div>
 
-					<form method="POST" name="MonForm" action="./queries/addTicket.php"
+					<form method="POST" name="MonForm" action="plans.php"
                         style="display:flex; flex-direction:column">
-                        <input type="text" name="id_trajet" id="id_trajet" placeholder="Trajet"
-                            style="margin-bottom: 10px" />
-                        <input type="number" name="prix" id="prix" placeholder="Prix" style="margin-bottom: 10px" />
-                        <input type="text" name="classT" id="classT" placeholder="Classe de ticket"
-                            style="margin-bottom: 10px" />
-                        <div style="margin-bottom: 10px">
-                            <input style="width: 100%;" type="date" name="date" />
-                            <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
-                        </div>
+						<label for="DepartureDate">From</label>
+                        <select id="From" class="form-control" name="Source"  style="margin-bottom: 10px">
+		<option>From</option>
+        <option>Nabeul, TN</option>
+		<option>Sfax, TN</option>
+         <option>Tunis,TN</option>
+		 <option>Borj Cedria,TN</option>
+		 <option>Sousse,TN</option>
+		 <option>Bizert,TN</option>
+         <option>Tourki,TN</option>
+		 <option>Borj Cedria,TN</option>
+		 <option>Kef,TN</option>
+		 <option>Grombelia,TN</option>
+        <option>Hammam Lif,TN</option>
+      </select>
 
-                        <input class="btn btn-success" type="submit" name="submit" value="Add" />
+	  <label for="DepartureDate">To </label>
+	  <select id="To" class="form-control" name="Destination" style="margin-bottom: 10px">
+	     <option>To</option>
+         <option>Nabeul, TN</option>
+		 <option>Sfax, TN</option>
+         <option>Tunis,TN</option>
+		 <option>Borj Cedria,TN</option>
+		 <option>Sousse,TN</option>
+		 <option>Bizert,TN</option>
+         <option>Tourki,TN</option>
+		 <option>Borj Cedria,TN</option>
+		 <option>Kef,TN</option>
+		 <option>Grombelia,TN</option>
+        <option>Hammam Lif,TN</option>
+      </select>
+
+      <label for="DepartureDate">Departure Date</label>
+      <input type="Date" class="form-control" id="DepartureDate" name="Date" style="margin-bottom: 10px">
+
+
+                        <!-- <input class="btn btn-success" type="submit" name="submit" value="Check for lines" /> -->
+						<a href="./plans.php">Check for lines</a>
                     </form>
 				</div>
 			</div><!-- row -->

@@ -119,7 +119,7 @@ if ($_SESSION["autorisation"] == "admin" || $_SESSION["autorisation"] == "client
 
 	<section class="textdivider single-post-header">
 		<div class="container">
-			<h1 class="fade-down">Ticket</h1>
+			<h1 class="fade-down">Reclamation</h1>
 			<hr class="mb60">
 		</div>
 	</section>
@@ -131,20 +131,19 @@ if ($_SESSION["autorisation"] == "admin" || $_SESSION["autorisation"] == "client
 		<section class="container page-section">
 			<div class="row white">
 				<div class="fade-up col-md-offset-2 col-md-8 single-post-content text-center">
-					<p>Get a new ticket</p>
+					<p>Send a Reclamation</p>
 					<div id="message"></div>
 
-					<form method="POST" name="MonForm" action="./queries/addTicket.php"
+					<form method="POST" name="MonForm" action="./queries/addReclamation.php"
                         style="display:flex; flex-direction:column">
-                        <input type="text" name="id_trajet" id="id_trajet" placeholder="Trajet"
+                        <input type="text" name="nom" id="nom" placeholder="Nom"
                             style="margin-bottom: 10px" />
-                        <input type="number" name="prix" id="prix" placeholder="Prix" style="margin-bottom: 10px" />
-                        <input type="text" name="classT" id="classT" placeholder="Classe de ticket"
+                        <input type="text" name="prenom" id="prenom" placeholder="Prenom"
                             style="margin-bottom: 10px" />
-                        <div style="margin-bottom: 10px">
-                            <input style="width: 100%;" type="date" name="date" />
-                            <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
-                        </div>
+                        <input type="email" name="email" id="email" placeholder="Email"
+                            style="margin-bottom: 10px" />
+							<textarea name="recla" placeholder="Ecrivez votre reclamation"></textarea>
+
 
                         <input class="btn btn-success" type="submit" name="submit" value="Add" />
                     </form>
